@@ -17,4 +17,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: 'daily'
     }
-})
+});
+
+const User = mongoose.model('User', UserSchema);
+module.exports = User;
