@@ -85,3 +85,10 @@ router.post('/login', (req, res) => {
     });
 });
 
+// Feature Logout
+router.get('/logout', (req, res) => {
+    req.flash('successMsg', 'Logout Successfully');
+    res.redirect('/users/login');
+})
+
+module.exports = router;
