@@ -10,7 +10,32 @@ router.get('/', (req, res) => {
 
 
 // Controller
-
+var email = "";
+router.get('/controller', (req, res) => {
+    email = req.query.user;
+    User.findOne({
+        email: req.query.user
+    }).then(user => {
+        Habits.find({
+            email: req.query.user
+        }, (err, habits) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                var days = [];
+                days.push(getD(0));
+                days.push(getD(1));
+                days.push(getD(2));
+                days.push(getD(3));
+                days.push(getD(4));
+                days.push(getD(5));
+                days.push(getD(6));
+                res.render('controller', { habits, user, days });
+            }
+        });
+    })
+});
 
 // Handling Month Dates
 function getDate(x) {
