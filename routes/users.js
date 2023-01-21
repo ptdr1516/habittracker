@@ -62,3 +62,26 @@ router.post('/register', (req, res) => {
         });
     }
 });
+
+// Feature Login
+router.post('/login', (req, res) => {
+    const { name, email } = req.body;
+
+    User.findOne({ email: email }).then((user) => {
+        if (!user) {
+            let errors = [];
+            errors.push({
+                msg: 'Email not found'
+            });
+            res.render('login', {
+                errors,
+                name,
+                email
+            });
+        }
+        else {
+            res.redirect(``);
+        }
+    });
+});
+
