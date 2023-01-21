@@ -8,6 +8,10 @@ router.get('/', (req, res) => {
     res.render('homepage')
 });
 
+
+// Controller
+
+
 // Handling Month Dates
 function getDate(x) {
     let d = new Date();

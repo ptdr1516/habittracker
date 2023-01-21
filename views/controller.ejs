@@ -1,0 +1,123 @@
+<div class="">
+    <div class="">
+        <h1 class="" style="">Habit Tracker</h1>
+    </div>
+    <div class="">
+        <p class="">Hey <%= user.name %></p>
+    </div>
+    <div class="">
+        <a href="/users/logout" class="">Logout</a>
+    </div>
+</div>
+
+<div class="">
+    <h2>Make it a habit to tell people thank you!</h2>
+    <form action="/user-view" method="post" class="">
+        <div class="" aria-label="Change View">
+            <% if(user.view === "daily"){ %>
+                <button type="submit" class="" aria-pressed="true">Daily</button>
+                <button type="submit" class="">Weekly</button>
+                <% } else { %>
+                    <button type="submit" class="">Daily</button>
+                    <button type="submit" class="" aria-pressed="true">Weekly</button>
+                    <% } %>
+        </div>
+    </form>
+
+    <div class="habit">
+        <form action="/controller" method="post" class="habit-header">
+            <input type="text" name="content" required>
+            <button type="submit" class=""><span class=""></span></button>
+        </form>
+        <i class="" style=""></i>
+        -Done&emsp;&emsp;
+        <i class="" style=""></i>
+        -Not Done&emsp;&emsp;
+        <i class="" style=""></i>
+        -Unmarked&emsp;&emsp;
+        <% if(user.view === "daily"){ %>
+            <ul class="habit-list">
+                <% habits.forEach(details => { let offset = (new Date()).
+                getTimezoneOffset() * 60000, found = false, status = '';
+
+                var today = (new Date(Date.now() - offset)).toISOString()
+                .slice(0, 10);
+                details.dates.find(function (item, index) {
+                    if (item.date === today) {
+                        found = true;
+                        status = item.complete;
+                    }
+                });
+                %>
+
+                <li class="habit-list-item">
+                    <a href="" class="">
+                        <% if(found && status === 'yes'){ %>
+                        <i class=""></i>
+                        <% } else if(found && status === 'no'){ %>
+                        <i class=""></i>
+                        <% } else { %>
+                        <i class=""></i>
+                        <% } %>
+                    </a>
+                    &emsp;
+                    <div class="habit-list-item-name">
+                        <%= details.content %>
+                    </div>
+                    <a href="" class="">
+                        <% if(details.favorite) { %>
+                        <i class=""></i>
+                        <% } else { %>
+                        <i class=""></i>
+                        <% } %>
+                    </a>
+                    <a href="" class="">
+                        <i class=""></i>
+                    </a>
+                </li>
+                <% }) %>
+            </ul>
+            <% } else { %>
+                <ul class="habit-list text-center">
+                    <% habits.forEach(details => { %>
+                        <li class="habit-list-item">
+                            <div class="habit-list-item-name">
+                                <%= details.content  %>
+                            </div>
+                            <a href="" class="favorite">
+                                <% if(details.favorite) { %>
+                                <i class=""></i>
+                                <% } else { %>
+                                <i class=""></i>
+                                <% } %>
+                            </a>
+                            <a href="">
+                                <i></i>
+                            </a>
+                            <% days.forEach(day => { let found = false, status = '';
+                            details.dates.find(function (item, index){
+                                if (item.date === day.date) {
+                                    found = true;
+                                    status = item.complete;
+                                }
+                            });
+                            %>
+                            <div class="dotw">
+                                <div class=""><span><%= day.day + ", " + day.date.slice(-2) %></span></div>
+                                <a href="" class="">
+                                    <% if(found && status === 'yes'){ %>
+                                    <i class=""></i>
+                                    <% } else if(found && status === 'no'){ %>
+                                    <i class=""></i>
+                                    <% } else { %>
+                                    <i class=""></i>
+                                    <% } %>
+                                </a>
+                            </div>
+                            <% }) %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
+    </div>
+</div>
