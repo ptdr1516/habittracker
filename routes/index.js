@@ -88,4 +88,58 @@ router.post('/user-view', (req, res) => {
         })
 })
 
+// Adding habits to the controller
+router.post('/controller', (req, res) => {
+    const { content } = req.body;
+
+    Habits.findOne({ content: content, email: email }).then(habits => {
+        if (habits) {
+            // updating existing content
+            let dates = habits.dates, offset = (new Date()).getTimezoneOffset() * 60000;
+            var today = (new Date(Date.now - offset)).toISOString().slice(0, 10);
+            dates.find(function (item, index) {
+                if (item.date === today) {
+                    console.log('Habit Exists');
+                    req.flash('errorMsg', 'Habit Already Exists');
+                    res.redirect('back');
+                }
+                else {
+                    dates.push({ date: today, complete: 'none' });
+                    habits.dates = dates;
+                    habits.save()
+                          .then(habits => {
+                              console.log(habits);
+                              res.redirect('back');
+                          })
+                            .catch((err) => {
+                                console.log('Error',err);
+                            })
+                }
+            });
+        }
+        else {
+            let dates = [];
+            offset = (new Date()).getTimezoneOffset() * 60000;
+            var localISOTime = (new Date(Date.now() - offset)).toISOString().slice(0, 10);
+            dates.push({ date: localISOTime, complete: 'none' });
+            const newHabit = new Habits({
+                content,
+                email,
+                dates
+            });
+
+            // Save the habit
+            newHabit
+                .save()
+                .then(habits => {
+                    console.log(habits);
+                    res.redirect('back');
+                })
+                .catch(err => console.log('Error',err));
+        }
+    })
+});
+
+
+
 module.exports = router;
