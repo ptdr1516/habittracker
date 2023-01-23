@@ -38,7 +38,7 @@ router.get('/controller', (req, res) => {
 });
 
 // Handling Month Dates
-function getDate(x) {
+function getD(x) {
     let d = new Date();
     d.setDate(d.getDate() + x);
 
@@ -61,9 +61,31 @@ function getDate(x) {
     }
 
     return {
-        date: newDate(),
+        date: newDate,
         day
     };
 }
+
+// Feature: view change on the basis of daily and weekly days
+router.post('/user-view', (req, res) => {
+    User.findOne({
+        email
+    })
+        .then((user) => {
+            user.view = user.view === 'daily' ? 'weekly' : 'daily';
+            user.save()
+
+            .then((user) => {
+                return res.redirect('back');
+            })
+                .catch((err) => {
+                    console.log(err);
+                })
+                .catch((err) => {
+                    console.log('Error while changing view');
+                    return;
+            })
+        })
+})
 
 module.exports = router;
