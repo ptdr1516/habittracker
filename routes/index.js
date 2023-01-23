@@ -168,6 +168,47 @@ router.get('/favorite-habit', function(req, res) {
         })
 });
 
+// Feature to update habits status
+router.get('status-update', (req, res) => {
+    var d = req.query.date;
+    var id = req.query.id;
+    Habits.findById(id, (err, habits) => {
+        if (err) {
+            console.log('Error while updating status');
+        }
+        else {
+            let dates = habits.dates;
+            let found = false;
+            dates.find(function (item, index) {
+                if (item.date === d) {
+                    if (item.complete === 'yes') {
+                        item.complete = 'no';
+                    }
+                    else if (item.complete === 'no') {
+                        item.complete = 'none';
+                    }
+                    else if (item.complete === 'none') {
+                        item.complete = 'yes';
+                    }
+                    found = true;
+                }
+            })
+            if (!found) {
+                dates.push({ date: d, complete: 'yes' })
+            }
+            habits.dates = dates;
+            habits.save()
+                  .then(habits => {
+                      console.log(habits);
+                      res.redirect('back');
+                  })
+                   .catch(err => {
+                       console.log('Error ',err);
+                   })
+        }
+    })
+});
+
 
 
 module.exports = router;
