@@ -209,6 +209,26 @@ router.get('status-update', (req, res) => {
     })
 });
 
-
+// Deleting habits
+router.get('/delete', (req, res) => {
+    let id = req.query.id;
+    Habits.deleteMany({
+        _id: {
+            $in: [id]
+        },
+        email
+    }, (err) => {
+        if (err) {
+            console.log('Error while deleting habit');
+        }
+        else {
+            req.flash(
+                'successMsg',
+                'Habits deleted successfully'
+            );
+            return res.redirect('back');
+        }
+    })
+});
 
 module.exports = router;
