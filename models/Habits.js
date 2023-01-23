@@ -13,7 +13,7 @@ const HabitsSchema = new mongoose.Schema({
         date: String,
         complete: String
     }],
-    favorites: {
+    favorite: {
         type: Boolean,
         default: false
     }

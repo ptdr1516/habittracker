@@ -140,6 +140,34 @@ router.post('/controller', (req, res) => {
     })
 });
 
+// Add, Remove Habits to/from favorites
+router.get('/favorite-habit', function(req, res) {
+    let id = req.query.id;
+    Habits.findOne({
+        _id: {
+            $in: [
+                id
+            ]
+        },
+        email
+    })
+        .then(habits => {
+            habits.favorite = habits.favorite ? false : true;
+            habit.save()
+                .then(habits => {
+                    req.flash(
+                        'successMsg',
+                        habits.favorite ? 'Habit added to favorite list' : 'Habit removed from the favorite list'
+                    );
+                    return res.redirec('back');
+                })
+                .catch(err => {
+                    console.log('Error while adding habits to favorite list');
+                    return;
+                })
+        })
+});
+
 
 
 module.exports = router;
