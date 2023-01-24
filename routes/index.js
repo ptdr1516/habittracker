@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/User');
-const Habits = require('../models/Habits');
+const Habit = require('../models/Habit');
 
 router.get('/', (req, res) => {
     res.render('homepage')
@@ -16,7 +16,7 @@ router.get('/controller', (req, res) => {
     User.findOne({
         email: req.query.user
     }).then(user => {
-        Habits.find({
+        Habit.find({
             email: req.query.user
         }, (err, habits) => {
             if (err) {
@@ -92,7 +92,7 @@ router.post('/user-view', (req, res) => {
 router.post('/controller', (req, res) => {
     const { content } = req.body;
 
-    Habits.findOne({ content: content, email: email }).then(habits => {
+    Habit.findOne({ content: content, email: email }).then(habits => {
         if (habits) {
             // updating existing content
             let dates = habits.dates, offset = (new Date()).getTimezoneOffset() * 60000;
@@ -122,7 +122,7 @@ router.post('/controller', (req, res) => {
             offset = (new Date()).getTimezoneOffset() * 60000;
             var localISOTime = (new Date(Date.now() - offset)).toISOString().slice(0, 10);
             dates.push({ date: localISOTime, complete: 'none' });
-            const newHabit = new Habits({
+            const newHabit = new Habit({
                 content,
                 email,
                 dates
@@ -143,7 +143,7 @@ router.post('/controller', (req, res) => {
 // Add, Remove Habits to/from favorites
 router.get('/favorite-habit', function(req, res) {
     let id = req.query.id;
-    Habits.findOne({
+    Habit.findOne({
         _id: {
             $in: [
                 id
@@ -153,13 +153,13 @@ router.get('/favorite-habit', function(req, res) {
     })
         .then(habits => {
             habits.favorite = habits.favorite ? false : true;
-            habit.save()
+            habits.save()
                 .then(habits => {
                     req.flash(
                         'successMsg',
                         habits.favorite ? 'Habit added to favorite list' : 'Habit removed from the favorite list'
                     );
-                    return res.redirec('back');
+                    return res.redirect('back');
                 })
                 .catch(err => {
                     console.log('Error while adding habits to favorite list');
@@ -169,10 +169,10 @@ router.get('/favorite-habit', function(req, res) {
 });
 
 // Feature to update habits status
-router.get('status-update', (req, res) => {
+router.get('/status-update', (req, res) => {
     var d = req.query.date;
     var id = req.query.id;
-    Habits.findById(id, (err, habits) => {
+    Habit.findById(id, (err, habits) => {
         if (err) {
             console.log('Error while updating status');
         }
@@ -210,9 +210,9 @@ router.get('status-update', (req, res) => {
 });
 
 // Deleting habits
-router.get('/delete', (req, res) => {
+router.get('/remove', (req, res) => {
     let id = req.query.id;
-    Habits.deleteMany({
+    Habit.deleteMany({
         _id: {
             $in: [id]
         },

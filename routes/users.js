@@ -80,7 +80,7 @@ router.post('/login', (req, res) => {
             });
         }
         else {
-            res.redirect(``);
+            res.redirect(`/controller?user=${user.email}`);
         }
     });
 });
