@@ -9,20 +9,8 @@
       <change afterPath="D:/git clone/habit-tracker-app/Habit-Tracker/.idea/Habit-Tracker.iml" afterDir="false" />
       <change afterPath="D:/git clone/habit-tracker-app/Habit-Tracker/.idea/modules.xml" afterDir="false" />
       <change afterPath="D:/git clone/habit-tracker-app/Habit-Tracker/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/habit-tracker-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/habit-tracker-app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Habits.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Habit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/controller.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/controller.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/homepage.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/homepage.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layout.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/register.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/register.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="D:/git clone/habit-tracker-app/Habit-Tracker/package-lock.json" beforeDir="false" afterPath="D:/git clone/habit-tracker-app/Habit-Tracker/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,6 +57,10 @@
       <workItem from="1674460405839" duration="8869000" />
       <workItem from="1674545084886" duration="63000" />
       <workItem from="1674546309782" duration="6433000" />
+      <workItem from="1674552810546" duration="1618000" />
+      <workItem from="1675149009485" duration="621000" />
+      <workItem from="1675154067616" duration="28000" />
+      <workItem from="1675421343502" duration="538000" />
     </task>
     <servers />
   </component>
